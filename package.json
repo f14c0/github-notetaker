@@ -1,0 +1,15 @@
+{
+  "name": "github-notetaker",
+  "version": "1.0.0",
+  "description": "Sample Project to learning ReactJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julian Vega",
+  "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/f14c0/github-notetaker.git"
+  },
+}
