@@ -1,23 +1,22 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 
 var Main = React.createClass({
   render:function () {
     return(
-      <div>
-        My First Component
-        <ul>
-          <li>
-            First item
-          </li>
-          <li>
-            Second item
-          </li>
-        </ul>
+      <div className="main-container">
+        <nav className="navbar navbar-default" role="navigation">
+            <div className="col-sm-7 col-sm-offset-2" style={{marginTop:15}}>
+              Menu
+            </div>
+        </nav>
+        <div className="container">
+            {this.props.children}
+        </div>
+
       </div>
     )
   }
 });
 
-//Where we are going to put the element we just created
-ReactDOM.render(<Main />,document.getElementById('app'))
+//export component so we can use require to  use it
+module.exports = Main;

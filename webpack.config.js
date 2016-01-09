@@ -1,6 +1,6 @@
 module.exports = {
     //entry ponit to processing JSX
-    entry: "./app/components/Main.js",
+    entry: "./app/App.js",
     output:{
       filename: "public/bundle.js",//where to put transcoded file
     },
