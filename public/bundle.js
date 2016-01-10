@@ -24214,9 +24214,9 @@
 	  //Component initial state function , returns default Values.
 	  getInitialState: function getInitialState() {
 	    return {
-	      repos: ['1', '2', '3'],
+	      repos: [],
 	      bio: "mi bio",
-	      notes: ['a', 'b', 'd']
+	      notes: []
 	    };
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -24239,7 +24239,11 @@
 	    //Bind reference to "notes" property (this.props.notes)
 	    this.bindAsArray(childRef, 'notes');
 	  },
-
+	  //custom handlers
+	  handleAddNote: function handleAddNote(newNote) {
+	    console.log(newNote);
+	    this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -24257,7 +24261,11 @@
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Notes, { notes: this.state.notes, username: this.props.params.username })
+	        React.createElement(Notes, {
+	          notes: this.state.notes,
+	          username: this.props.params.username,
+	          addNote: this.handleAddNote
+	        })
 	      )
 	    );
 	  }
@@ -25000,13 +25008,15 @@
 
 	var React = __webpack_require__(1);
 	var Notelist = __webpack_require__(217);
+	var AddNote = __webpack_require__(218);
 
 	var Notes = React.createClass({
 	  displayName: 'Notes',
 
 	  propTypes: {
 	    notes: React.PropTypes.array.isRequired,
-	    username: React.PropTypes.string.isRequired
+	    username: React.PropTypes.string.isRequired,
+	    addNote: React.PropTypes.func.isRequired
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -25018,6 +25028,11 @@
 	        ' Notes for ',
 	        this.props.username.toUpperCase(),
 	        ' '
+	      ),
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement(AddNote, { addNote: this.props.addNote })
 	      ),
 	      React.createElement(
 	        'div',
@@ -25065,6 +25080,51 @@
 
 	//export component so we can use require to  use it
 	module.exports = Notelist;
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var AddNote = React.createClass({
+	  displayName: 'AddNote',
+
+	  propTypes: {
+	    username: React.PropTypes.string,
+	    addNote: React.PropTypes.func.isRequired
+	  },
+	  setRef: function setRef(ref) {
+	    this.note = ref;
+	  },
+	  handleSubmit: function handleSubmit() {
+	    //Use .value  to get actual value of the prop
+	    var newNote = this.note.value;
+	    this.note.value = '';
+	    this.props.addNote(this.note.value);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'input-group' },
+	      React.createElement('input', { className: 'form-control', type: 'Text', ref: this.setRef }),
+	      React.createElement(
+	        'span',
+	        { className: 'input-group-btn' },
+	        React.createElement(
+	          'button',
+	          { className: 'btn btn-primary', onClick: this.handleSubmit },
+	          'Add Note'
+	        )
+	      )
+	    );
+	  }
+	});
+
+	//export component so we can use require to  use it
+	module.exports = AddNote;
 
 /***/ }
 /******/ ]);

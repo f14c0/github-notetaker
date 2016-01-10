@@ -14,9 +14,9 @@ var Profile = React.createClass({
     //Component initial state function , returns default Values.
     getInitialState: function(){
       return {
-        repos:['1','2','3'],
+        repos:[],
         bio:"mi bio",
-        notes:['a','b','d'],
+        notes:[],
       };
     },
     componentWillMount : function () {
@@ -40,7 +40,11 @@ var Profile = React.createClass({
       //Bind reference to "notes" property (this.props.notes)
       this.bindAsArray(childRef,'notes');
     },
-
+    //custom handlers
+    handleAddNote: function (newNote) {
+      console.log(newNote);
+      this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
+    },
     render : function () {
       return(
         <div className = "row">
@@ -51,7 +55,11 @@ var Profile = React.createClass({
             <Repos repos={this.state.repos} username ={this.props.params.username}/>
           </div>
           <div className = "col-md-4">
-            <Notes notes={this.state.notes} username ={this.props.params.username}/>
+            <Notes
+              notes= {this.state.notes}
+              username ={this.props.params.username}
+              addNote = {this.handleAddNote}
+              />
           </div>
         </div>
       )
