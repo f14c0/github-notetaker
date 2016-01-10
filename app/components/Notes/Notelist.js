@@ -1,8 +1,8 @@
 var React = require('react');
 
 var Notelist = React.createClass({
-    componentWillUpdate: function(nextProps, nextState){
-
+    propTypes:{
+      notes:React.PropTypes.array.isRequired,
     },
     render : function () {
 

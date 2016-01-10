@@ -24215,7 +24215,7 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      repos: ['1', '2', '3'],
-	      bio: { bio: "mi bio" },
+	      bio: "mi bio",
 	      notes: ['a', 'b', 'd']
 	    };
 	  },
@@ -24247,7 +24247,7 @@
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(UserProfile, { username: this.props.params.username })
+	        React.createElement(UserProfile, { username: this.props.params.username, bio: this.state.bio })
 	      ),
 	      React.createElement(
 	        'div',
@@ -24922,7 +24922,18 @@
 	var Repos = React.createClass({
 	  displayName: "Repos",
 
+	  propTypes: {
+	    repos: React.PropTypes.array.isRequired,
+	    username: React.PropTypes.string.isRequired
+	  },
 	  render: function render() {
+	    var repos = this.props.repos.map(function (item, index) {
+	      return React.createElement(
+	        "li",
+	        { className: "list-group-item" },
+	        item
+	      );
+	    });
 	    return React.createElement(
 	      "div",
 	      { className: "panel panel-default" },
@@ -24931,7 +24942,11 @@
 	        { className: "panel-heading" },
 	        " Repos "
 	      ),
-	      React.createElement("div", { className: "panel-body" })
+	      React.createElement(
+	        "div",
+	        { className: "list-group" },
+	        repos
+	      )
 	    );
 	  }
 	});
@@ -24950,6 +24965,10 @@
 	var UserPofile = React.createClass({
 	  displayName: "UserPofile",
 
+	  propTypes: {
+	    bio: React.PropTypes.string.isRequired,
+	    username: React.PropTypes.string.isRequired
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      "div",
@@ -24960,7 +24979,12 @@
 	        " Github User : ",
 	        this.props.username.toUpperCase()
 	      ),
-	      React.createElement("div", { className: "panel-body" })
+	      React.createElement(
+	        "div",
+	        { className: "panel-body" },
+	        " Bio : ",
+	        this.props.bio
+	      )
 	    );
 	  }
 	});
@@ -24980,8 +25004,10 @@
 	var Notes = React.createClass({
 	  displayName: 'Notes',
 
-	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {},
-
+	  propTypes: {
+	    notes: React.PropTypes.array.isRequired,
+	    username: React.PropTypes.string.isRequired
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -25014,25 +25040,27 @@
 	var React = __webpack_require__(1);
 
 	var Notelist = React.createClass({
-	    displayName: 'Notelist',
+	  displayName: 'Notelist',
 
-	    componentWillUpdate: function componentWillUpdate(nextProps, nextState) {},
-	    render: function render() {
+	  propTypes: {
+	    notes: React.PropTypes.array.isRequired
+	  },
+	  render: function render() {
 
-	        var notes = this.props.notes.map(function (item, index) {
-	            return React.createElement(
-	                'li',
-	                { className: 'list-group-item', key: index },
-	                item['.value']
-	            );
-	        });
-	        console.log(notes);
-	        return React.createElement(
-	            'div',
-	            { className: 'list-group' },
-	            notes
-	        );
-	    }
+	    var notes = this.props.notes.map(function (item, index) {
+	      return React.createElement(
+	        'li',
+	        { className: 'list-group-item', key: index },
+	        item['.value']
+	      );
+	    });
+	    console.log(notes);
+	    return React.createElement(
+	      'div',
+	      { className: 'list-group' },
+	      notes
+	    );
+	  }
 	});
 
 	//export component so we can use require to  use it

@@ -2,10 +2,10 @@ var React = require('react');
 var Notelist = require('./Notelist');
 
 var Notes = React.createClass({
-    componentWillUpdate: function(nextProps, nextState){
-
+    propTypes:{
+      notes:React.PropTypes.array.isRequired,
+      username:React.PropTypes.string.isRequired,
     },
-
     render : function () {
       return(
         <div className="panel panel-info">
