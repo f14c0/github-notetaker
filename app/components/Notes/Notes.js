@@ -1,17 +1,20 @@
-
 var React = require('react');
+var Notelist = require('./Notelist');
 
-var UserPofile = React.createClass({
+var Notes = React.createClass({
+    componentWillUpdate: function(nextProps, nextState){
+
+    },
+
     render : function () {
-      console.log(this.props);
       return(
-        <div className="panel panel-default">
-          <div className="panel-heading"> Notes</div>
-          <div className="panel-body">: {this.props.notes}</div>
+        <div className="panel panel-info">
+          <div className="panel-heading "> Notes for {this.props.username.toUpperCase()} </div>
+          <div className="list-group"><Notelist notes ={this.props.notes} /></div>
         </div>
       )
     }
 });
 
 //export component so we can use require to  use it
-module.exports = UserPofile
+module.exports = Notes
