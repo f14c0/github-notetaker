@@ -24117,15 +24117,18 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var Router = __webpack_require__(159);
 	var Main = __webpack_require__(209);
 	var Home = __webpack_require__(210);
-	var Router = __webpack_require__(159);
+	var Profile = __webpack_require__(211);
+
 	var Route = Router.Route;
 	var IndexRoute = Router.IndexRoute;
 
 	module.exports = React.createElement(
 	  Route,
 	  { path: '/', component: Main },
+	  React.createElement(Route, { path: 'profile/:username', component: Profile }),
 	  React.createElement(IndexRoute, { component: Home }),
 	  '  // IndexRoute is matched if none routes'
 	);
@@ -24188,6 +24191,148 @@
 
 	//export component so we can use require to  use it
 	module.exports = Home;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(159);
+	//Impor used Components
+	var Repos = __webpack_require__(212);
+	var UserProfile = __webpack_require__(213);
+	var Notes = __webpack_require__(214);
+
+	var Profile = React.createClass({
+	  displayName: 'Profile',
+
+	  //Component initial state function , returns default Values.
+	  getInitialState: function getInitialState() {
+	    return {
+	      repos: ['1', '2', '3'],
+	      bio: { bio: "mi bio" },
+	      notes: ['a', 'b', 'd']
+	    };
+	  },
+	  render: function render() {
+	    console.log(this.props);
+	    return React.createElement(
+	      'div',
+	      { className: 'row' },
+	      React.createElement(
+	        'div',
+	        { className: 'col-md-4' },
+	        React.createElement(UserProfile, { username: this.props.params.username })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'col-md-4' },
+	        React.createElement(Repos, { repos: this.state.repos })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'col-md-4' },
+	        React.createElement(Notes, { notes: this.state.notes })
+	      )
+	    );
+	  }
+	});
+
+	//export component so we can use require to  use it
+	module.exports = Profile;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Repos = React.createClass({
+	  displayName: "Repos",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "panel panel-default" },
+	      React.createElement(
+	        "div",
+	        { className: "panel-heading" },
+	        " Repos "
+	      ),
+	      React.createElement("div", { className: "panel-body" })
+	    );
+	  }
+	});
+
+	//export component so we can use require to  use it
+	module.exports = Repos;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var UserPofile = React.createClass({
+	  displayName: "UserPofile",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "panel panel-default" },
+	      React.createElement(
+	        "div",
+	        { className: "panel-heading" },
+	        " Github User : ",
+	        this.props.username.toUpperCase()
+	      ),
+	      React.createElement("div", { className: "panel-body" })
+	    );
+	  }
+	});
+
+	//export component so we can use require to  use it
+	module.exports = UserPofile;
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var UserPofile = React.createClass({
+	  displayName: "UserPofile",
+
+	  render: function render() {
+	    console.log(this.props);
+	    return React.createElement(
+	      "div",
+	      { className: "panel panel-default" },
+	      React.createElement(
+	        "div",
+	        { className: "panel-heading" },
+	        " Notes"
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "panel-body" },
+	        ": ",
+	        this.props.notes
+	      )
+	    );
+	  }
+	});
+
+	//export component so we can use require to  use it
+	module.exports = UserPofile;
 
 /***/ }
 /******/ ]);
