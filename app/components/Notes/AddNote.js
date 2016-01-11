@@ -22,7 +22,7 @@ var AddNote = React.createClass({
             <span className="input-group-btn">
               <button  className ="btn btn-primary" onClick={this.handleSubmit}>Add Note</button>
             </span>
-      </div>
+        </div>
       )
     }
 });

@@ -24137,29 +24137,30 @@
 /* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
+	var SearchUser = __webpack_require__(219);
 
 	var Main = React.createClass({
-	  displayName: "Main",
+	  displayName: 'Main',
 
 	  render: function render() {
 	    return React.createElement(
-	      "div",
-	      { className: "main-container" },
+	      'div',
+	      { className: 'main-container' },
 	      React.createElement(
-	        "nav",
-	        { className: "navbar navbar-default", role: "navigation" },
+	        'nav',
+	        { className: 'navbar navbar-default', role: 'navigation' },
 	        React.createElement(
-	          "div",
-	          { className: "col-sm-7 col-sm-offset-2", style: { marginTop: 15 } },
-	          "Menu"
+	          'div',
+	          { className: 'col-sm-7 col-sm-offset-2', style: { marginTop: 15 } },
+	          React.createElement(SearchUser, null)
 	        )
 	      ),
 	      React.createElement(
-	        "div",
-	        { className: "container" },
+	        'div',
+	        { className: 'container' },
 	        this.props.children
 	      )
 	    );
@@ -25125,6 +25126,52 @@
 
 	//export component so we can use require to  use it
 	module.exports = AddNote;
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(159);
+
+	var SearchUser = React.createClass({
+	  displayName: 'SearchUser',
+
+	  mixins: [Router.History],
+	  setRef: function setRef(ref) {
+	    this.userRef = ref;
+	  },
+	  handleSubmit: function handleSubmit() {
+	    var username = this.userRef.value;
+	    this.userRef.value = '';
+	    this.history.pushState(null, "profile/" + username);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'panel panel-info' },
+	      React.createElement(
+	        'div',
+	        { className: 'input-group' },
+	        React.createElement('input', { className: 'form-control', type: 'Text', ref: this.setRef }),
+	        React.createElement(
+	          'span',
+	          { className: 'input-group-btn' },
+	          React.createElement(
+	            'button',
+	            { className: 'btn btn-primary', onClick: this.handleSubmit },
+	            'Search User'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	//export component so we can use require to  use it
+	module.exports = SearchUser;
 
 /***/ }
 /******/ ]);
