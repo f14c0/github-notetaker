@@ -9,6 +9,7 @@ var SearchUser = React.createClass({
     handleSubmit :function () {
         var username = this.userRef.value;
         this.userRef.value ='';
+        //Transition to route /profile /:username
         this.history.pushState(null, "profile/" + username);
     },
     render : function () {
