@@ -6,7 +6,8 @@ var ReactFireMixin = require('reactfire');
 var Repos = require('../components/Github/Repos');
 var UserProfile = require('../components/Github/UserProfile');
 var Notes = require('../components/Notes/Notes');
-
+//Import Utils
+var Helper = require('../utils/Helper' );
 
 
 var Profile = React.createClass({
@@ -15,7 +16,7 @@ var Profile = React.createClass({
     getInitialState: function(){
       return {
         repos:[],
-        bio:"mi bio",
+        bio:{},
         notes:[],
       };
     },
@@ -26,6 +27,17 @@ var Profile = React.createClass({
       var childRef = this.ref.child(this.props.params.username);
       //Bind reference to "notes" property (this.props.notes)
       this.bindAsArray(childRef,'notes');
+      // get Github info
+      Helper.getGithubInfo(this.props.params.username)
+        .then(function (response) {
+        this.setState(
+          {
+            repos:response.repos,
+            bio: response.githubInfo,
+          });
+        }.bind(this));
+
+
     },
     componentWillUnmount : function (){
       //unbind reference to Firebase  to  prop 'notes'
@@ -39,7 +51,17 @@ var Profile = React.createClass({
       var childRef = this.ref.child(nextProps.params.username);
       //Bind reference to "notes" property (this.props.notes)
       this.bindAsArray(childRef,'notes');
-    },
+      //refresh component data
+      // get Github info
+      Helper.getGithubInfo(this.props.params.username)
+          .then(function (response) {
+          this.setState(
+            {
+              repos:response.repos,
+              bio: response.githubInfo,
+            });
+          }.bind(this));
+      },
     //custom handlers
     handleAddNote: function (newNote) {
       console.log(newNote);
