@@ -8,7 +8,11 @@ var Repos = React.createClass({
     render : function () {
       var repos = this.props.repos.map(function (item, index) {
         return (
-          <li className = "list-group-item">{item}</li>
+          <li className = "list-group-item " key={index}>
+            <strong><a href={item.html_url} target="_blank">{item.name}</a></strong>
+            <br/>
+            {item.description && <span>{item.description}</span>}
+          </li>
         )
       });
       return(
