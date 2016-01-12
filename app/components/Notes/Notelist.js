@@ -11,7 +11,6 @@ var Notelist = React.createClass({
           <li className = "list-group-item" key ={index}>
           {item['.value']}</li>)
       });
-      console.log(notes);
       return(
           <div className="list-group">{notes}</div>
       )
