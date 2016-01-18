@@ -12,7 +12,7 @@ var AddNote = React.createClass({
       //Use .value  to get actual value of the prop
       var newNote = this.note.value;
       this.note.value='';
-      this.props.addNote(this.note.value);
+      this.props.addNote(newNote);
     },
     render : function () {
       return(
