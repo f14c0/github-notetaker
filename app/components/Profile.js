@@ -20,23 +20,25 @@ var Profile = React.createClass({
         notes:[],
       };
     },
-    componentWillMount : function () {
-      // Set a new ref to firebase
-      this.ref = new Firebase('https://user-social-networks.firebaseio.com/');
+    init: function(username){
       // Setup child ref inside Firebase
-      var childRef = this.ref.child(this.props.params.username);
+      var childRef = this.ref.child(username);
       //Bind reference to "notes" property (this.props.notes)
       this.bindAsArray(childRef,'notes');
       // get Github info
-      Helper.getGithubInfo(this.props.params.username)
+      Helper.getGithubInfo(username)
         .then(function (response) {
         this.setState(
           {
             repos:response.repos,
             bio: response.githubInfo,
           });
-        }.bind(this));
-
+        }.bind(this));// bind to component context , to bew able call setState func
+    },
+    componentWillMount : function () {
+      // Set a new ref to firebase
+      this.ref = new Firebase('https://user-social-networks.firebaseio.com/');
+      this.init(this.props.params.username);
 
     },
     componentWillUnmount : function (){
@@ -44,24 +46,12 @@ var Profile = React.createClass({
       this.unbind('notes');
 
     },
+
     componentWillReceiveProps:function(nextProps) {
       //unbind  old reference to Firebase  to  prop 'notes'
       this.unbind('notes');
-      // Update child ref to firebase using paramas from incoming props
-      var childRef = this.ref.child(nextProps.params.username);
-      //Bind reference to "notes" property (this.props.notes)
-      this.bindAsArray(childRef,'notes');
-      //refresh component data
-      // get Github info
-      Helper.getGithubInfo(this.props.params.username)
-          .then(function (response) {
-          this.setState(
-            {
-              repos:response.repos,
-              bio: response.githubInfo,
-            });
-          }.bind(this));
-      },
+      this.init(nextProps.params.username);
+    },
     //custom handlers
     handleAddNote: function (newNote) {
       console.log(newNote);
