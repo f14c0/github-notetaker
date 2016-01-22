@@ -1,6 +1,8 @@
-var React = require('react');
-var Notelist = require('./Notelist');
-var AddNote = require('./AddNote');
+/*jshint esnext: true */
+
+import React from 'react' ;
+import Notelist from './Notelist' ;
+import AddNote from './AddNote' ;
 
 var Notes = React.createClass({
     propTypes:{
@@ -8,16 +10,16 @@ var Notes = React.createClass({
       username:React.PropTypes.string.isRequired,
       addNote:React.PropTypes.func.isRequired,
     },
-    render : function () {
+    render :()=> {
       return(
         <div className="panel panel-info">
           <div className="panel-heading "> Notes for {this.props.username.toUpperCase()} </div>
           <div><AddNote addNote={this.props.addNote}/></div>
           <div className="list-group"><Notelist notes ={this.props.notes} /></div>
         </div>
-      )
+      );
     }
 });
 
 //export component so we can use require to  use it
-module.exports = Notes
+export default  Notes;

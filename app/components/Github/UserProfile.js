@@ -1,12 +1,12 @@
-var React = require('react');
+/*jshint esnext: true */
+import React from 'react';
 
 var UserPofile = React.createClass({
     propTypes:{
       bio:React.PropTypes.object.isRequired,
       username:React.PropTypes.string.isRequired,
     },
-    render : function () {
-      console.log(this.props.bio);
+    render : () => {
       return(
         <div className="panel panel-primary">
           <div className="panel-heading">{this.props.bio.name}&#39;s Info</div>
@@ -24,13 +24,11 @@ var UserPofile = React.createClass({
                 { this.props.bio.location  && <span><h4> <i className="fa fa-map-marker"></i> {this.props.bio.location}</h4></span>}
                 </div>
             </div>
-
           </div>
-
         </div>
-      )
+      );
     }
 });
 
 //export component so we can use require to  use it
-module.exports = UserPofile
+export default UserPofile;

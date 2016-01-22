@@ -1,18 +1,18 @@
+/*jshint esnext: true */
 var axios = require('axios');
 
-
-var getGithubUserInfo = function (username) {
+var getGithubUserInfo = (username) => {
   return axios.get('https://api.github.com/users/'+ username);
 };
 
-var getGithubUserRepos = function (username) {
+var getGithubUserRepos = (username) => {
   return axios.get('https://api.github.com/users/' + username +'/repos');
 };
 
 var helpers = {
-  getGithubInfo:function (username) {
+  getGithubInfo:(username) => {
     return axios.all([getGithubUserRepos(username),getGithubUserInfo(username)])
-    .then(function (arr) {
+    .then((arr) => {
         return {
           repos : arr [0].data,
           githubInfo : arr [1].data,
@@ -22,4 +22,4 @@ var helpers = {
 
 };
 
-module.exports = helpers;
+export default helpers;

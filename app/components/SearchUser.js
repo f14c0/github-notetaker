@@ -1,18 +1,19 @@
-var React = require('react');
-var Router = require('react-router');
+/*jshint esnext: true */
+import React from 'react';
+import Router from 'react-router';
 
 var SearchUser = React.createClass({
     mixins : [Router.History],
-    setRef : function (ref) {
+    setRef : (ref) => {
       this.userRef = ref;
     },
-    handleSubmit :function () {
+    handleSubmit :() => {
         var username = this.userRef.value;
         this.userRef.value ='';
         //Transition to route /profile /:username
         this.history.pushState(null, "profile/" + username);
     },
-    render : function () {
+    render : () => {
       return(
         <div className="panel panel-info">
           <div className ="input-group">
@@ -24,9 +25,9 @@ var SearchUser = React.createClass({
 
           </div>
         </div>
-      )
+      );
     }
 });
 
 //export component so we can use require to  use it
-module.exports = SearchUser
+export default SearchUser;

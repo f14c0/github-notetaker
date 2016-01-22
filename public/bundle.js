@@ -46,15 +46,28 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
-	var Router = __webpack_require__(159).Router;
-	var routes = __webpack_require__(208);
+	var _react = __webpack_require__(1);
 
-	ReactDOM.render(React.createElement(
-	  Router,
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _routes = __webpack_require__(208);
+
+	var _routes2 = _interopRequireDefault(_routes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*jshint esnext: true */
+
+	_reactDom2.default.render(_react2.default.createElement(
+	  _reactRouter.Router,
 	  null,
-	  routes
+	  _routes2.default
 	), document.getElementById('app'));
 
 /***/ },
@@ -24116,20 +24129,42 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Router = __webpack_require__(159);
-	var Main = __webpack_require__(209);
-	var Home = __webpack_require__(211);
-	var Profile = __webpack_require__(212);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var Route = Router.Route;
-	var IndexRoute = Router.IndexRoute;
+	var _react = __webpack_require__(1);
 
-	module.exports = React.createElement(
-	  Route,
-	  { path: '/', component: Main },
-	  React.createElement(Route, { path: 'profile/:username', component: Profile }),
-	  React.createElement(IndexRoute, { component: Home }),
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+	var _Main = __webpack_require__(209);
+
+	var _Main2 = _interopRequireDefault(_Main);
+
+	var _Home = __webpack_require__(211);
+
+	var _Home2 = _interopRequireDefault(_Home);
+
+	var _Profile = __webpack_require__(212);
+
+	var _Profile2 = _interopRequireDefault(_Profile);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//ar Route = Router.Route;
+	//var IndexRoute = Router.IndexRoute;
+
+	/*jshint esnext: true */
+
+	exports.default = _react2.default.createElement(
+	  _reactRouter.Route,
+	  { path: '/', component: _Main2.default },
+	  _react2.default.createElement(_reactRouter.Route, { path: 'profile/:username', component: _Profile2.default }),
+	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
 	  '  // IndexRoute is matched if none routes'
 	);
 
@@ -24139,26 +24174,39 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var SearchUser = __webpack_require__(210);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var Main = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _SearchUser = __webpack_require__(210);
+
+	var _SearchUser2 = _interopRequireDefault(_SearchUser);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*jshint esnext: true */
+
+	var Main = _react2.default.createClass({
 	  displayName: 'Main',
 
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'main-container' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'nav',
 	        { className: 'navbar navbar-default', role: 'navigation' },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-sm-7 col-sm-offset-2', style: { marginTop: 15 } },
-	          React.createElement(SearchUser, null)
+	          _react2.default.createElement(_SearchUser2.default, null)
 	        )
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
 	        this.props.children
@@ -24168,7 +24216,7 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = Main;
+	exports.default = Main;
 
 /***/ },
 /* 210 */
@@ -24176,36 +24224,49 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Router = __webpack_require__(159);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var SearchUser = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*jshint esnext: true */
+
+	var SearchUser = _react2.default.createClass({
 	  displayName: 'SearchUser',
 
-	  mixins: [Router.History],
+	  mixins: [_reactRouter2.default.History],
 	  setRef: function setRef(ref) {
-	    this.userRef = ref;
+	    undefined.userRef = ref;
 	  },
 	  handleSubmit: function handleSubmit() {
-	    var username = this.userRef.value;
-	    this.userRef.value = '';
+	    var username = undefined.userRef.value;
+	    undefined.userRef.value = '';
 	    //Transition to route /profile /:username
-	    this.history.pushState(null, "profile/" + username);
+	    undefined.history.pushState(null, "profile/" + username);
 	  },
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'panel panel-info' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'input-group' },
-	        React.createElement('input', { className: 'form-control', type: 'Text', ref: this.setRef }),
-	        React.createElement(
+	        _react2.default.createElement('input', { className: 'form-control', type: 'Text', ref: undefined.setRef }),
+	        _react2.default.createElement(
 	          'span',
 	          { className: 'input-group-btn' },
-	          React.createElement(
+	          _react2.default.createElement(
 	            'button',
-	            { className: 'btn btn-primary', onClick: this.handleSubmit },
+	            { className: 'btn btn-primary', onClick: undefined.handleSubmit },
 	            'Search User'
 	          )
 	        )
@@ -24215,7 +24276,7 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = SearchUser;
+	exports.default = SearchUser;
 
 /***/ },
 /* 211 */
@@ -24223,13 +24284,21 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var Home = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Home = _react2.default.createClass({
 	  displayName: "Home",
 
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      "h2",
 	      { className: "text-center" },
 	      "Search by Github Name"
@@ -24238,7 +24307,9 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = Home;
+	/*jshint esnext: true */
+
+	exports.default = Home;
 
 /***/ },
 /* 212 */
@@ -24246,21 +24317,51 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Router = __webpack_require__(159);
-	var Firebase = __webpack_require__(213);
-	var ReactFireMixin = __webpack_require__(214);
-	//Import used Components
-	var Repos = __webpack_require__(215);
-	var UserProfile = __webpack_require__(216);
-	var Notes = __webpack_require__(217);
-	//Import Utils
-	var Helper = __webpack_require__(220);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var Profile = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+	var _firebase = __webpack_require__(213);
+
+	var _firebase2 = _interopRequireDefault(_firebase);
+
+	var _reactfire = __webpack_require__(214);
+
+	var _reactfire2 = _interopRequireDefault(_reactfire);
+
+	var _Repos = __webpack_require__(215);
+
+	var _Repos2 = _interopRequireDefault(_Repos);
+
+	var _UserProfile = __webpack_require__(216);
+
+	var _UserProfile2 = _interopRequireDefault(_UserProfile);
+
+	var _Notes = __webpack_require__(217);
+
+	var _Notes2 = _interopRequireDefault(_Notes);
+
+	var _Helper = __webpack_require__(220);
+
+	var _Helper2 = _interopRequireDefault(_Helper);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Import used Components
+	/*jshint esnext: true */
+
+	var Profile = _react2.default.createClass({
 	  displayName: 'Profile',
 
-	  mixins: [ReactFireMixin],
+	  mixins: [_reactfire2.default],
 	  //Component initial state function , returns default Values.
 	  getInitialState: function getInitialState() {
 	    return {
@@ -24269,67 +24370,60 @@
 	      notes: []
 	    };
 	  },
-	  componentWillMount: function componentWillMount() {
-	    // Set a new ref to firebase
-	    this.ref = new Firebase('https://user-social-networks.firebaseio.com/');
+	  init: function init(username) {
 	    // Setup child ref inside Firebase
-	    var childRef = this.ref.child(this.props.params.username);
+	    var childRef = undefined.ref.child(username);
 	    //Bind reference to "notes" property (this.props.notes)
-	    this.bindAsArray(childRef, 'notes');
+	    undefined.bindAsArray(childRef, 'notes');
 	    // get Github info
-	    Helper.getGithubInfo(this.props.params.username).then(function (response) {
+	    _Helper2.default.getGithubInfo(username).then(function (response) {
 	      this.setState({
 	        repos: response.repos,
 	        bio: response.githubInfo
 	      });
-	    }.bind(this));
+	    }.bind(undefined)); // bind to component context , to bew able call setState func
+	  },
+	  componentWillMount: function componentWillMount() {
+	    // Set a new ref to firebase
+	    undefined.ref = new _firebase2.default('https://user-social-networks.firebaseio.com/');
+	    undefined.init(undefined.props.params.username);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    //unbind reference to Firebase  to  prop 'notes'
-	    this.unbind('notes');
+	    undefined.unbind('notes');
 	  },
+
 	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 	    //unbind  old reference to Firebase  to  prop 'notes'
-	    this.unbind('notes');
-	    // Update child ref to firebase using paramas from incoming props
-	    var childRef = this.ref.child(nextProps.params.username);
-	    //Bind reference to "notes" property (this.props.notes)
-	    this.bindAsArray(childRef, 'notes');
-	    //refresh component data
-	    // get Github info
-	    Helper.getGithubInfo(this.props.params.username).then(function (response) {
-	      this.setState({
-	        repos: response.repos,
-	        bio: response.githubInfo
-	      });
-	    }.bind(this));
+	    undefined.unbind('notes');
+	    undefined.init(nextProps.params.username);
 	  },
 	  //custom handlers
 	  handleAddNote: function handleAddNote(newNote) {
 	    console.log(newNote);
-	    this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
+	    undefined.ref.child(undefined.props.params.username).child(undefined.state.notes.length).set(newNote);
 	  },
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'row' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(UserProfile, { username: this.props.params.username, bio: this.state.bio })
+	        _react2.default.createElement(_UserProfile2.default, { username: undefined.props.params.username, bio: undefined.state.bio })
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Repos, { repos: this.state.repos, username: this.props.params.username })
+	        _react2.default.createElement(_Repos2.default, { repos: undefined.state.repos, username: undefined.props.params.username })
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Notes, {
-	          notes: this.state.notes,
-	          username: this.props.params.username,
-	          addNote: this.handleAddNote
+	        _react2.default.createElement(_Notes2.default, {
+	          notes: undefined.state.notes,
+	          username: undefined.props.params.username,
+	          addNote: undefined.handleAddNote
 	        })
 	      )
 	    );
@@ -24337,7 +24431,9 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = Profile;
+
+	//Import Utils
+	exports.default = Profile;
 
 /***/ },
 /* 213 */
@@ -24990,46 +25086,55 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var Repos = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Repos = _react2.default.createClass({
 	  displayName: "Repos",
 
 	  propTypes: {
-	    repos: React.PropTypes.array.isRequired,
-	    username: React.PropTypes.string.isRequired
+	    repos: _react2.default.PropTypes.array.isRequired,
+	    username: _react2.default.PropTypes.string.isRequired
 	  },
 	  render: function render() {
-	    var repos = this.props.repos.map(function (item, index) {
-	      return React.createElement(
+	    var repos = undefined.props.repos.map(function (item, index) {
+	      return _react2.default.createElement(
 	        "li",
 	        { className: "list-group-item ", key: index },
-	        React.createElement(
+	        _react2.default.createElement(
 	          "strong",
 	          null,
-	          React.createElement(
+	          _react2.default.createElement(
 	            "a",
 	            { href: item.html_url, target: "_blank" },
 	            item.name
 	          )
 	        ),
-	        React.createElement("br", null),
-	        item.description && React.createElement(
+	        _react2.default.createElement("br", null),
+	        item.description && _react2.default.createElement(
 	          "span",
 	          null,
 	          item.description
 	        )
 	      );
 	    });
-	    return React.createElement(
+
+	    return _react2.default.createElement(
 	      "div",
 	      { className: "panel panel-default" },
-	      React.createElement(
+	      _react2.default.createElement(
 	        "div",
 	        { className: "panel-heading" },
 	        " Repos "
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        "div",
 	        { className: "list-group" },
 	        repos
@@ -25039,7 +25144,10 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = Repos;
+
+	/*jshint esnext: true */
+
+	exports.default = Repos;
 
 /***/ },
 /* 216 */
@@ -25047,83 +25155,90 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var UserPofile = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UserPofile = _react2.default.createClass({
 	  displayName: "UserPofile",
 
 	  propTypes: {
-	    bio: React.PropTypes.object.isRequired,
-	    username: React.PropTypes.string.isRequired
+	    bio: _react2.default.PropTypes.object.isRequired,
+	    username: _react2.default.PropTypes.string.isRequired
 	  },
 	  render: function render() {
-	    console.log(this.props.bio);
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      "div",
 	      { className: "panel panel-primary" },
-	      React.createElement(
+	      _react2.default.createElement(
 	        "div",
 	        { className: "panel-heading" },
-	        this.props.bio.name,
+	        undefined.props.bio.name,
 	        "'s Info"
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        "div",
 	        { className: "panel-body" },
-	        React.createElement(
+	        _react2.default.createElement(
 	          "div",
 	          { className: "panel-body" },
-	          React.createElement(
+	          _react2.default.createElement(
 	            "div",
 	            { className: "col-xs-8 col-xs-offset-2" },
-	            React.createElement("img", { src: this.props.bio.avatar_url, alt: this.props.username,
+	            _react2.default.createElement("img", { src: undefined.props.bio.avatar_url, alt: undefined.props.username,
 	              className: "img-circle img-responsive center-block" })
 	          )
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          "div",
 	          { className: "col-xs-12" },
-	          React.createElement(
+	          _react2.default.createElement(
 	            "div",
 	            { className: "text-center" },
-	            this.props.bio.blog && React.createElement(
+	            undefined.props.bio.blog && _react2.default.createElement(
 	              "span",
 	              null,
-	              React.createElement(
+	              _react2.default.createElement(
 	                "h4",
 	                null,
 	                " ",
-	                React.createElement("i", { className: "fa fa-link" }),
+	                _react2.default.createElement("i", { className: "fa fa-link" }),
 	                " ",
-	                React.createElement(
+	                _react2.default.createElement(
 	                  "a",
-	                  { href: this.props.bio.blog },
-	                  this.props.bio.blog
+	                  { href: undefined.props.bio.blog },
+	                  undefined.props.bio.blog
 	                )
 	              )
 	            ),
-	            this.props.bio.email && React.createElement(
+	            undefined.props.bio.email && _react2.default.createElement(
 	              "span",
 	              null,
-	              React.createElement(
+	              _react2.default.createElement(
 	                "h4",
 	                null,
 	                " ",
-	                React.createElement("i", { className: "fa fa-envelope-o" }),
+	                _react2.default.createElement("i", { className: "fa fa-envelope-o" }),
 	                " ",
-	                this.props.bio.email
+	                undefined.props.bio.email
 	              )
 	            ),
-	            this.props.bio.location && React.createElement(
+	            undefined.props.bio.location && _react2.default.createElement(
 	              "span",
 	              null,
-	              React.createElement(
+	              _react2.default.createElement(
 	                "h4",
 	                null,
 	                " ",
-	                React.createElement("i", { className: "fa fa-map-marker" }),
+	                _react2.default.createElement("i", { className: "fa fa-map-marker" }),
 	                " ",
-	                this.props.bio.location
+	                undefined.props.bio.location
 	              )
 	            )
 	          )
@@ -25134,7 +25249,8 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = UserPofile;
+	/*jshint esnext: true */
+	exports.default = UserPofile;
 
 /***/ },
 /* 217 */
@@ -25142,45 +25258,61 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Notelist = __webpack_require__(218);
-	var AddNote = __webpack_require__(219);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var Notes = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Notelist = __webpack_require__(218);
+
+	var _Notelist2 = _interopRequireDefault(_Notelist);
+
+	var _AddNote = __webpack_require__(219);
+
+	var _AddNote2 = _interopRequireDefault(_AddNote);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Notes = _react2.default.createClass({
 	  displayName: 'Notes',
 
 	  propTypes: {
-	    notes: React.PropTypes.array.isRequired,
-	    username: React.PropTypes.string.isRequired,
-	    addNote: React.PropTypes.func.isRequired
+	    notes: _react2.default.PropTypes.array.isRequired,
+	    username: _react2.default.PropTypes.string.isRequired,
+	    addNote: _react2.default.PropTypes.func.isRequired
 	  },
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'panel panel-info' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'panel-heading ' },
 	        ' Notes for ',
-	        this.props.username.toUpperCase(),
+	        undefined.props.username.toUpperCase(),
 	        ' '
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        null,
-	        React.createElement(AddNote, { addNote: this.props.addNote })
+	        _react2.default.createElement(_AddNote2.default, { addNote: undefined.props.addNote })
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'list-group' },
-	        React.createElement(Notelist, { notes: this.props.notes })
+	        _react2.default.createElement(_Notelist2.default, { notes: undefined.props.notes })
 	      )
 	    );
 	  }
 	});
 
 	//export component so we can use require to  use it
-	module.exports = Notes;
+	/*jshint esnext: true */
+
+	exports.default = Notes;
 
 /***/ },
 /* 218 */
@@ -25188,24 +25320,32 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var Notelist = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Notelist = _react2.default.createClass({
 	  displayName: 'Notelist',
 
 	  propTypes: {
-	    notes: React.PropTypes.array.isRequired
+	    notes: _react2.default.PropTypes.array.isRequired
 	  },
 	  render: function render() {
 
-	    var notes = this.props.notes.map(function (item, index) {
-	      return React.createElement(
+	    var notes = undefined.props.notes.map(function (item, index) {
+	      return _react2.default.createElement(
 	        'li',
 	        { className: 'list-group-item', key: index },
 	        item['.value']
 	      );
 	    });
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'list-group' },
 	      notes
@@ -25214,7 +25354,9 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = Notelist;
+	/*jshint esnext: true */
+
+	exports.default = Notelist;
 
 /***/ },
 /* 219 */
@@ -25222,35 +25364,43 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var AddNote = React.createClass({
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddNote = _react2.default.createClass({
 	  displayName: 'AddNote',
 
 	  propTypes: {
-	    username: React.PropTypes.string,
-	    addNote: React.PropTypes.func.isRequired
+	    username: _react2.default.PropTypes.string,
+	    addNote: _react2.default.PropTypes.func.isRequired
 	  },
 	  setRef: function setRef(ref) {
-	    this.note = ref;
+	    undefined.note = ref;
 	  },
 	  handleSubmit: function handleSubmit() {
 	    //Use .value  to get actual value of the prop
-	    var newNote = this.note.value;
-	    this.note.value = '';
-	    this.props.addNote(newNote);
+	    var newNote = undefined.note.value;
+	    undefined.note.value = '';
+	    undefined.props.addNote(newNote);
 	  },
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'input-group' },
-	      React.createElement('input', { className: 'form-control', type: 'Text', ref: this.setRef }),
-	      React.createElement(
+	      _react2.default.createElement('input', { className: 'form-control', type: 'Text', ref: undefined.setRef }),
+	      _react2.default.createElement(
 	        'span',
 	        { className: 'input-group-btn' },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'button',
-	          { className: 'btn btn-primary', onClick: this.handleSubmit },
+	          { className: 'btn btn-primary', onClick: undefined.handleSubmit },
 	          'Add Note'
 	        )
 	      )
@@ -25259,7 +25409,8 @@
 	});
 
 	//export component so we can use require to  use it
-	module.exports = AddNote;
+	/*jshint esnext: true */
+	exports.default = AddNote;
 
 /***/ },
 /* 220 */
@@ -25267,6 +25418,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/*jshint esnext: true */
 	var axios = __webpack_require__(221);
 
 	var getGithubUserInfo = function getGithubUserInfo(username) {
@@ -25289,7 +25444,7 @@
 
 	};
 
-	module.exports = helpers;
+	exports.default = helpers;
 
 /***/ },
 /* 221 */

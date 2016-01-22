@@ -1,63 +1,66 @@
-var React = require('react');
-var Router = require('react-router');
-var Firebase = require('firebase');
-var ReactFireMixin = require('reactfire');
+/*jshint esnext: true */
+
+import React from 'react';
+import Router from 'react-router';
+import Firebase from 'firebase';
+import ReactFireMixin from 'reactfire';
 //Import used Components
-var Repos = require('../components/Github/Repos');
-var UserProfile = require('../components/Github/UserProfile');
-var Notes = require('../components/Notes/Notes');
+import Repos from '../components/Github/Repos';
+import UserProfile from '../components/Github/UserProfile';
+import Notes from '../components/Notes/Notes';
 //Import Utils
-var Helper = require('../utils/Helper' );
+import Helper from '../utils/Helper' ;
 
 
 var Profile = React.createClass({
     mixins:[ReactFireMixin],
     //Component initial state function , returns default Values.
-    getInitialState: function(){
+    getInitialState: ()=>{
       return {
         repos:[],
         bio:{},
         notes:[],
       };
     },
-    init: function(username){
+    init:(username)=>{
       // Setup child ref inside Firebase
       var childRef = this.ref.child(username);
       //Bind reference to "notes" property (this.props.notes)
       this.bindAsArray(childRef,'notes');
       // get Github info
       Helper.getGithubInfo(username)
-        .then(function (response) {
-        this.setState(
-          {
-            repos:response.repos,
-            bio: response.githubInfo,
-          });
+        .then(
+        function (response) {
+          this.setState(
+            {
+              repos:response.repos,
+              bio: response.githubInfo,
+            });
         }.bind(this));// bind to component context , to bew able call setState func
     },
-    componentWillMount : function () {
+    componentWillMount : ()=> {
       // Set a new ref to firebase
       this.ref = new Firebase('https://user-social-networks.firebaseio.com/');
       this.init(this.props.params.username);
 
     },
-    componentWillUnmount : function (){
+    componentWillUnmount : ()=>{
       //unbind reference to Firebase  to  prop 'notes'
       this.unbind('notes');
 
     },
 
-    componentWillReceiveProps:function(nextProps) {
+    componentWillReceiveProps:(nextProps)=>{
       //unbind  old reference to Firebase  to  prop 'notes'
       this.unbind('notes');
       this.init(nextProps.params.username);
     },
     //custom handlers
-    handleAddNote: function (newNote) {
+    handleAddNote: (newNote) => {
       console.log(newNote);
       this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
     },
-    render : function () {
+    render : () => {
       return(
         <div className = "row">
           <div className = "col-md-4">
@@ -74,9 +77,9 @@ var Profile = React.createClass({
               />
           </div>
         </div>
-      )
+      );
     }
 });
 
 //export component so we can use require to  use it
-module.exports = Profile
+export default Profile;

@@ -1,20 +1,21 @@
-var React = require('react');
+/*jshint esnext: true */
+import  React from 'react';
 
 var AddNote = React.createClass({
     propTypes:{
       username:React.PropTypes.string,
       addNote:React.PropTypes.func.isRequired,
     },
-    setRef:function (ref) {
+    setRef:(ref)=> {
       this.note = ref;
     },
-    handleSubmit:function () {
+    handleSubmit:()=>{
       //Use .value  to get actual value of the prop
       var newNote = this.note.value;
       this.note.value='';
       this.props.addNote(newNote);
     },
-    render : function () {
+    render :()=>{
       return(
         <div className= "input-group">
             <input className="form-control"  type ="Text" ref ={this.setRef}>
@@ -23,9 +24,9 @@ var AddNote = React.createClass({
               <button  className ="btn btn-primary" onClick={this.handleSubmit}>Add Note</button>
             </span>
         </div>
-      )
+      );
     }
 });
 
 //export component so we can use require to  use it
-module.exports = AddNote
+export default  AddNote;

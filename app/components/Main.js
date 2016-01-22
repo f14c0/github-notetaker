@@ -1,12 +1,14 @@
-var React = require('react');
-var SearchUser = require('./SearchUser');
+/*jshint esnext: true */
+
+import React  from 'react';
+import SearchUser  from './SearchUser';
 
 var Main = React.createClass({
-  render:function () {
+  render:function(){
     return(
       <div className="main-container">
         <nav className="navbar navbar-default" role="navigation">
-            <div className="col-sm-7 col-sm-offset-2" style={{marginTop:15}}>
+            <div className="col-sm-7 col-sm-offset-2" style={{ marginTop:15 }}>
               <SearchUser/>
             </div>
         </nav>
@@ -15,9 +17,9 @@ var Main = React.createClass({
         </div>
 
       </div>
-    )
+    );
   }
 });
 
 //export component so we can use require to  use it
-module.exports = Main;
+export default Main;

@@ -1,21 +1,23 @@
-var React = require('react');
+/*jshint esnext: true */
+
+import React from 'react';
 
 var Notelist = React.createClass({
     propTypes:{
       notes:React.PropTypes.array.isRequired,
     },
-    render : function () {
+    render :() => {
 
       var notes = this.props.notes.map(function (item, index) {
         return(
           <li className = "list-group-item" key ={index}>
-          {item['.value']}</li>)
+          {item['.value']}</li>);
       });
       return(
           <div className="list-group">{notes}</div>
-      )
+      );
     }
 });
 
 //export component so we can use require to  use it
-module.exports = Notelist
+export default Notelist;

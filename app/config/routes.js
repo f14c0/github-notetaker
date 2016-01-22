@@ -1,14 +1,17 @@
-var React = require('react');
-var Router = require ('react-router');
-var Main = require('../components/Main');
-var Home = require('../components/Home');
-var Profile = require('../components/Profile');
+/*jshint esnext: true */
+
+import  React from 'react';
+import  Router from 'react-router';
+import { Route , IndexRoute } from 'react-router';
+import  Main from '../components/Main';
+import  Home from '../components/Home';
+import  Profile from '../components/Profile';
 
 
-var Route = Router.Route;
-var IndexRoute = Router.IndexRoute;
+//ar Route = Router.Route;
+//var IndexRoute = Router.IndexRoute;
 
-module.exports= (
+export default (
   <Route path = "/" component={Main}>
     <Route path = "profile/:username" component={Profile}/>
     <IndexRoute component={Home}/>  // IndexRoute is matched if none routes
